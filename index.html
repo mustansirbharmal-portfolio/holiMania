@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holi Mania</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        #timer {
+            font-size: 48px;
+            font-weight: bold;
+            color: white;
+            animation: scaleAnimation 1s infinite alternate;
+            /* Scale animation */
+        }
+
+        @keyframes scaleAnimation {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.2);
+            }
+        }
+
+        #video-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            display: none;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="timer" style="font-size: 10rem;"></div>
+        <div id="video-container">
+            <video id="holiVideo" autoplay muted style="width:100%; ">
+                <source src="Holi.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    
+
+    <!-- Bootstrap JS and jQuery (necessary for Bootstrap) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Custom JS -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Countdown timer
+            var count = 3;
+            var timer = document.getElementById('timer');
+            var videoContainer = document.getElementById('video-container');
+            var holiVideo = document.getElementById('holiVideo');
+
+            var countdown = setInterval(function () {
+                timer.textContent = count;
+                count--;
+                if (count < 0) {
+                    clearInterval(countdown);
+                    timer.style.display = 'none';
+                    videoContainer.style.display = 'block';
+                    var textNode = document.createElement('h1');
+                    var textNode2 = document.createElement('button');
+
+                    textNode.id = 'text';
+                    textNode2.id = 'dive';
+
+                    textNode.textContent = 'Are you Ready to Celebrate Holi';
+
+                    // Create a button element
+                    var textNode2 = document.createElement('button');
+
+                    // Set text content
+                    textNode2.textContent = "Let's Dive";
+
+                    // Apply CSS styles
+                    textNode2.style.backgroundColor = "white";
+                    textNode2.style.fontSize = "1.5rem";
+                    textNode2.style.color = "black";
+                    textNode2.style.border = "none";
+                    textNode2.style.padding = "10px 20px";
+                    textNode2.style.margin = "0px 20px";
+                    textNode2.style.lineHeight = "2";
+                    textNode2.style.borderRadius = "5px";
+                    textNode2.style.cursor = "pointer";
+
+                    textNode2.addEventListener('click', function () {
+                        // Redirect to the next page
+                        window.location.href = "index2.html";
+                    });
+
+                    // Create a line break element
+                    var lineBreak = document.createElement('br');
+
+                    // Append the line break, h1, and button to the container
+                    var container = document.querySelector('.container');
+                    document.querySelector('.container').appendChild(textNode);
+                    document.querySelector('.container').appendChild(lineBreak);
+                    document.querySelector('.container').appendChild(textNode2);
+
+                    textNode.style.backgroundImage = "linear-gradient(to right, pink, blue, green, red)"; // Change colors as needed
+                    textNode.style.WebkitBackgroundClip = "text";
+                    textNode.style.color = "transparent";
+
+                    // Play sound when the video starts playing
+                    holiVideo.addEventListener('playing', function () {
+                        var audio = new Audio('Holi.mp4');
+                        audio.play();
+                    });
+
+                    // Hide video and text when the video ends
+                    holiVideo.addEventListener('ended', function () {
+                        videoContainer.style.display = 'none';
+                        textNode.style.display = 'none';
+                        // Display your landing page or perform any other action
+                    });
+                }
+            }, 1000);
+        });
+    </script>
+</body>
+
+</html>

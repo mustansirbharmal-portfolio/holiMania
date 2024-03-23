@@ -1,0 +1,29 @@
+body{
+    background-color: black;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+}
+
+@media only screen and (min-width:993px){
+    .show{
+        display: none;
+    }
+    
+}
+
+@media only screen and (min-width:0px) and (max-width:992px){
+    .show{
+        display: inline-block;
+    }
+    .hidden{
+        display: none;
+    }
+}
+
+li .foot-link{
+  display:inline-block ;
+}
